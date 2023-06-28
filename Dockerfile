@@ -3,7 +3,7 @@
 # production: runs the actual app
 
 # Build builder image
-FROM ruby:3.1.2-alpine as builder
+FROM ruby:3.2.2-alpine as builder
 
 # RUN apk -U upgrade && \
 #     apk add --update --no-cache gcc git libc6-compat libc-dev make nodejs \
@@ -17,9 +17,9 @@ RUN apk add --update --no-cache tzdata && \
     echo "Europe/London" > /etc/timezone
 
 # build-base: dependencies for bundle
+# gcompat: dependencies for nokogiri
 # yarn: node package manager
-# postgresql-dev: postgres driver and libraries
-RUN apk add --no-cache build-base yarn postgresql13-dev
+RUN apk add --no-cache build-base gcompat yarn
 
 # Install gems defined in Gemfile
 COPY .ruby-version Gemfile Gemfile.lock ./
@@ -53,7 +53,7 @@ RUN rm -rf node_modules log/* tmp/* /tmp && \
     find /usr/local/bundle/gems -name "*.html" -delete
 
 # Build runtime image
-FROM ruby:3.1.2-alpine as production
+FROM ruby:3.2.2-alpine as production
 
 # The application runs from /app
 WORKDIR /app
@@ -63,12 +63,11 @@ RUN apk add --update --no-cache tzdata && \
     cp /usr/share/zoneinfo/Europe/London /etc/localtime && \
     echo "Europe/London" > /etc/timezone
 
-# libpq: required to run postgres
-RUN apk add --no-cache libpq
+# gcompat: required by nokogiri
+RUN apk add --no-cache gcompat
 
 # Copy files generated in the builder image
 COPY --from=builder /app /app
 COPY --from=builder /usr/local/bundle/ /usr/local/bundle/
 
-CMD bundle exec rails db:migrate && \
-    bundle exec rails server -b 0.0.0.0
+CMD bundle exec rails server -b 0.0.0.0
