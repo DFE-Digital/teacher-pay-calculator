@@ -251,6 +251,13 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
+    slim (5.1.1)
+      temple (~> 0.10.0)
+      tilt (>= 2.1.0)
+    slim-rails (3.6.2)
+      actionpack (>= 3.1)
+      railties (>= 3.1)
+      slim (>= 3.0, < 6.0, != 5.0.0)
     syntax_tree (6.1.1)
       prettier_print (>= 1.2.0)
     syntax_tree-haml (4.0.3)
@@ -308,6 +315,7 @@ DEPENDENCIES
   rspec-rails
   rubocop-govuk
   selenium-webdriver
+  slim-rails
   syntax_tree
   syntax_tree-haml
   syntax_tree-rbs

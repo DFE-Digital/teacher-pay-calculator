@@ -9,6 +9,8 @@ gem "rails", "~> 7.0.5"
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "propshaft"
 
+gem "slim-rails"
+
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
 
