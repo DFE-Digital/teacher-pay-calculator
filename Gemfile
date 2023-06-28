@@ -66,6 +66,7 @@ gem "govuk-components"
 gem "govuk_design_system_formbuilder"
 
 group :test, :development do
+  gem "byebug"
   gem "rspec"
   gem "rspec-rails"
 end
