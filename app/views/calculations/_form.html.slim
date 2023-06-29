@@ -1,0 +1,19 @@
+= form_with model: @calculation, data: { turbo: false }, url: results_path do |f|
+
+  = f.govuk_error_summary
+
+  = f.govuk_collection_select :current_payband_or_spine_point_id,
+    paybands_and_spine_points_including_no_option,
+    :id,
+    :name,
+    label: { text: t('questions.current_payband.label'), size: 's' }
+
+  = f.govuk_radio_buttons_fieldset(:area_id,
+      legend: { size: 's', text: t('questions.area.label') },
+      hint: { text: t('questions.area.hint'), size: 's' }) do
+    - area_options_london.each do |area|
+      = f.govuk_radio_button :area_id, area.id, label: { text: area.name }
+    = f.govuk_radio_divider
+    = f.govuk_radio_button :area_id, area_option_rest_of_england.id, label: { text: area_option_rest_of_england.name }
+
+  = f.govuk_submit t('questions.submit.label')

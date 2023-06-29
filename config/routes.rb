@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
-  root to: 'pages#home'
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  root to: 'calculations#new', as: :new_calculation
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  post 'results', to: 'calculations#results', as: :results
+  get 'results', to: redirect('/')
 
   scope via: :all do
     get '/404', to: 'errors#not_found'
