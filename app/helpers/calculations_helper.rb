@@ -35,6 +35,6 @@ module CalculationsHelper
   end
 
   def build_options(hash)
-    hash.map { |attrs| Option.new(*attrs) }
+    hash.map { |key, value| Option.new(id: key, name: value) }
   end
 end
