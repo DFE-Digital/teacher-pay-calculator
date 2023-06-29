@@ -11,6 +11,8 @@ gem 'jsbundling-rails'
 gem 'propshaft'
 gem 'puma', '~> 5.0'
 gem 'rails', '~> 7.0.5.1'
+gem 'sentry-rails'
+gem 'sentry-ruby'
 gem 'slim-rails'
 gem 'tzinfo-data', platforms: %i[ mingw mswin x64_mingw jruby ]
 
