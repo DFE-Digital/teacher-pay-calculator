@@ -1,0 +1,62 @@
+name: Build, test and deploy to AKS
+concurrency: build_and_deploy_${{ github.ref_name }}
+
+on:
+  push:
+    branches:
+    - main
+
+jobs:
+    build:
+      name: Build and scan docker image
+      runs-on: ubuntu-latest
+      outputs:
+        docker-image-tag: ${{ steps.build-image.outputs.tag }}
+
+      steps:
+        - name: Build and push docker image
+          id: build-image
+          uses: DFE-Digital/github-actions/build-docker-image@master
+          with:
+            docker-repository: ghcr.io/dfe-digital/teacher-pay-calculator
+            github-token: ${{ secrets.GITHUB_TOKEN }}
+
+    test:
+      name: Run tests
+      runs-on: ubuntu-latest
+
+      steps:
+        - name: Placeholder
+          run: |
+            echo run tests
+
+    deploy:
+      name: Deploy ${{ matrix.environment }}
+      runs-on: ubuntu-latest
+      needs: [build, test]
+      environment:
+        name: ${{ matrix.environment }}
+      strategy:
+        max-parallel: 1
+        matrix:
+          environment: [development, production]
+
+      steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 1.5.1
+          terraform_wrapper: false
+
+      - uses: DFE-Digital/github-actions/set-arm-environment-variables@master
+        with:
+          azure-credentials: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Apply Terraform
+        run: |
+          make ci ${{ matrix.environment }} terraform-apply
+        env:
+          TF_VAR_azure_sp_credentials_json: ${{ secrets.AZURE_CREDENTIALS }}
+          DOCKER_IMAGE_TAG: ${{ needs.build.outputs.docker-image-tag }}
