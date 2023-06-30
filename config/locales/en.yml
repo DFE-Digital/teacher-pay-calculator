@@ -1,4 +1,48 @@
 en:
+  number:
+    currency:
+      format:
+        unit: £
   service:
-    name: GOV.UK Frontend on Rails
-    email: my-service@email
+    name: Calculate teacher pay
+    email: TODO@CHANGEME
+  questions:
+    heading: Calculate teacher pay following the 2023 pay award
+    no_option:
+      label: Choose a pay band
+    current_payband:
+      label: What is your pay band?
+    area:
+      label: Where do you work?
+      hint: If you are unsure, check your payslip or ask your school
+    submit:
+      label: Calculate pay
+  results:
+    panel:
+      spine_point_outcome:
+        title: The advisory pay point for %{spine_point} will increase to %{value} from 1 September 2023
+        text: This is an increase of %{increase_value}, which is a %{increase_percentage}% pay rise
+      payband_outcome:
+        title: The pay range for %{payband} will be between %{future_value_min} and %{future_value_max} from 1 September 2023
+        text: This is a minimum increase of %{increase_value_min}, which is a %{increase_percentage_min}% pay rise
+    inset: This calculator is indicative only. The new pay award is subject to a statutory consultation period and your school can choose how to implement it.
+    summary:
+      title: Your answers
+    start_again:
+      label: Start again
+      text: Start again if you want to try this calculator with a different pay band.
+  error_pages:
+    internal_server_error: Something's gone wrong
+    not_found: Page not found
+    unprocessable_entity: We're unable to process your request
+  activemodel:
+    errors:
+      models:
+        calculation:
+          attributes:
+            base:
+              invalid: An unexpected error occurred
+            area_id:
+              invalid: Select if you work in Inner London, Outer London, the Fringe of London or the Rest of England
+            current_payband_or_spine_point_id:
+              invalid: Select your pay band
