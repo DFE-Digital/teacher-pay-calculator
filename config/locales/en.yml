@@ -7,7 +7,7 @@ en:
     name: Calculate teacher pay
     email: TODO@CHANGEME
   questions:
-    heading: Calculate teacher pay
+    heading: Calculate teacher pay following the 2023 pay award
     no_option:
       label: Choose a pay band
     current_payband:
@@ -31,6 +31,10 @@ en:
     start_again:
       label: Start again
       text: Start again if you want to try this calculator with a different pay band.
+    error_pages:
+      internal_server_error: Sorry, there's a technical issue at our end
+      not_found: Page not found
+      unprocessable_entity: We're unable to process your request
   activemodel:
     errors:
       models:

@@ -1,0 +1,5 @@
+- content_for :page_title_prefix, t('error_pages.internal_server_error')
+
+h1.govuk-heading-xl = t('error_pages.internal_server_error')
+p.govuk-body We’re working to fix this, so please try again shortly.
+p.govuk-body If you continue to have problems accessing #{t("service.name")} you can email #{govuk_mail_to t("service.email"), t("service.email")}
