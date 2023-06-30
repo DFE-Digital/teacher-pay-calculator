@@ -15,12 +15,16 @@ production:
 domains:
 	$(eval include global_config/domains.sh)
 
+ci:
+	$(eval export AUTO_APPROVE=-auto-approve)
+	$(eval SKIP_AZURE_LOGIN=true)
+
 bin/terrafile: ## Install terrafile to manage terraform modules
 	curl -sL https://github.com/coretech/terrafile/releases/download/v${TERRAFILE_VERSION}/terrafile_${TERRAFILE_VERSION}_$$(uname)_x86_64.tar.gz \
 		| tar xz -C ./bin terrafile
 
 set-azure-account:
-	az account set -s ${AZ_SUBSCRIPTION}
+	[ "${SKIP_AZURE_LOGIN}" != "true" ] && az account set -s ${AZ_SUBSCRIPTION} || true
 
 terraform-init: bin/terrafile set-azure-account
 	$(if ${DOCKER_IMAGE_TAG}, , $(eval DOCKER_IMAGE_TAG=main))
@@ -42,7 +46,7 @@ terraform-plan: terraform-init
 	terraform -chdir=terraform/application plan -var-file "config/${CONFIG}.tfvars.json"
 
 terraform-apply: terraform-init
-	terraform -chdir=terraform/application apply -var-file "config/${CONFIG}.tfvars.json"
+	terraform -chdir=terraform/application apply -var-file "config/${CONFIG}.tfvars.json" ${AUTO_APPROVE}
 
 set-what-if:
 	$(eval WHAT_IF=--what-if)
