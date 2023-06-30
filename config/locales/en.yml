@@ -23,7 +23,7 @@ en:
         title: The advisory pay point for %{spine_point} will increase to %{value} from 1 September 2023
         text: This is an increase of %{increase_value}, which is a %{increase_percentage}% pay rise
       payband_outcome:
-        title: The advisory pay range for %{payband} will be between %{future_value_min} and %{future_value_max} from 1 September 2023
+        title: The pay range for %{payband} will be between %{future_value_min} and %{future_value_max} from 1 September 2023
         text: This is a minimum increase of %{increase_value_min}, which is a %{increase_percentage_min}% pay rise
     inset: This calculator is indicative only. The new pay award is subject to a statutory consultation period and your school can choose how to implement it.
     summary:
@@ -31,10 +31,10 @@ en:
     start_again:
       label: Start again
       text: Start again if you want to try this calculator with a different pay band.
-    error_pages:
-      internal_server_error: Sorry, there's a technical issue at our end
-      not_found: Page not found
-      unprocessable_entity: We're unable to process your request
+  error_pages:
+    internal_server_error: Something's gone wrong
+    not_found: Page not found
+    unprocessable_entity: We're unable to process your request
   activemodel:
     errors:
       models:
