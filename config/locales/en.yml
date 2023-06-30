@@ -9,7 +9,7 @@ en:
     heading: Calculate teacher pay following the 2023 pay award
     no_option:
       label: Choose a pay band
-    current_payband:
+    current_pay_band:
       label: What is your pay band?
     area:
       label: Where do you work?
@@ -21,8 +21,8 @@ en:
       spine_point_outcome:
         title: The advisory pay point for %{spine_point} will increase to %{value} from 1 September 2023
         text: This is an increase of %{increase_value}, which is a %{increase_percentage}% pay rise
-      payband_outcome:
-        title: The pay range for %{payband} will be between %{future_value_min} and %{future_value_max} from 1 September 2023
+      pay_band_outcome:
+        title: The pay range for %{pay_band} will be between %{future_value_min} and %{future_value_max} from 1 September 2023
         text: This is a minimum increase of %{increase_value_min}, which is a %{increase_percentage_min}% pay rise
     inset: This calculator is indicative only. The new pay award is subject to a statutory consultation period and your school can choose how to implement it.
     summary:
@@ -37,11 +37,11 @@ en:
   activemodel:
     errors:
       models:
-        calculation:
+        calculation_form:
           attributes:
-            base:
-              invalid: An unexpected error occurred
             area_id:
+              blank: Select if you work in Inner London, Outer London, the Fringe of London or the Rest of England
               invalid: Select if you work in Inner London, Outer London, the Fringe of London or the Rest of England
-            current_payband_or_spine_point_id:
-              invalid: Select your pay band
+            pay_band_id:
+              blank: Select your pay band
+              invalid: The selected pay band or spine point is not valid

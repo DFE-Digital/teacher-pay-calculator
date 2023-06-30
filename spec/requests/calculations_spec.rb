@@ -21,14 +21,16 @@ RSpec.describe 'Calculations', type: :request do
 
   describe 'POST /results' do
     before do
-      post '/results', params: { calculation: { **params } }
+      post '/results', params: { calculation_form: { **params } }
     end
 
     context 'with valid params' do
+      let(:salary_figures) { create :salary_figures }
+
       let(:params) do
         {
-          area_id: 'london_fringe',
-          current_payband_or_spine_point_id: 'unq1'
+          area_id: salary_figures.area.id.to_s,
+          pay_band_id: salary_figures.pay_band.id.to_s
         }
       end
 
@@ -40,7 +42,7 @@ RSpec.describe 'Calculations', type: :request do
       let(:params) do
         {
           area_id: 'invalid',
-          current_payband_or_spine_point_id: 'unq1'
+          pay_band_id: create(:pay_band).id.to_s
         }
       end
 

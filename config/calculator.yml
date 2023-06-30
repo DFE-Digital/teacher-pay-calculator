@@ -253,7 +253,9 @@ development: &default
         future: [52676, 131353]
 
 test:
-  <<: *default
+  paybands_and_spine_points: {}
+  areas: {}
+  pay_ranges: {}
 
 production:
   <<: *default
