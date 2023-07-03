@@ -6,7 +6,6 @@ variable "azure_resource_prefix" {}
 variable "config_short" {}
 variable "service_name" {}
 variable "service_short" {}
-variable "deploy_azure_backing_services" { default = true }
 variable "docker_image_tag" {}
 
 locals {
