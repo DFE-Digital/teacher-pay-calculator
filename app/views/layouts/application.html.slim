@@ -26,7 +26,7 @@ html lang='en' class='govuk-template'
 
     = govuk_skip_link
 
-    = govuk_header(service_name: t('service.name'))
+    = govuk_header(homepage_url: 'https://www.gov.uk', service_name: t('service.name'), service_url: '/')
 
     .govuk-width-container
       - if Rails.env.development?
