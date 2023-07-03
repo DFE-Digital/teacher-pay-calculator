@@ -34,6 +34,9 @@ jobs:
         with:
           bundler-cache: true
 
+      - name: Build frontend
+        run: yarn build && yarn build:css
+
       - name: Install dependencies
         run: bundle install --quiet --retry=5
 
