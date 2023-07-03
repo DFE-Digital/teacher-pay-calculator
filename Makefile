@@ -78,14 +78,14 @@ domains-infra-plan: domains domains-infra-init
 domains-infra-apply: domains domains-infra-init
 	terraform -chdir=terraform/domains/infrastructure apply -var-file config/zones.tfvars.json
 
-domains-init: set-azure-account
+domains-init: domains set-azure-account
 	terraform -chdir=terraform/domains/environment_domains init -upgrade -reconfigure \
 		-backend-config=resource_group_name=${RESOURCE_GROUP_NAME} \
 		-backend-config=storage_account_name=${STORAGE_ACCOUNT_NAME} \
-		-backend-config=key=domains_${ENVIRONMENT}.tfstate
+		-backend-config=key=${ENVIRONMENT}.tfstate
 
-domains-plan: domains-init  # make register qa domains-plan
-	terraform -chdir=terraform/domains/environment_domains plan -var-file config/${DOMAINS_ID}_${DEPLOY_ENV}.tfvars.json
+domains-plan: domains-init
+	terraform -chdir=terraform/domains/environment_domains plan -var-file config/${CONFIG}.tfvars.json
 
-domains-apply: domains-init # make register qa domains-apply
-	terraform -chdir=terraform/domains/environment_domains apply -var-file config/${DOMAINS_ID}_${DEPLOY_ENV}.tfvars.json ${AUTO_APPROVE}
+domains-apply: domains-init
+	terraform -chdir=terraform/domains/environment_domains apply -var-file config/${CONFIG}.tfvars.json ${AUTO_APPROVE}
