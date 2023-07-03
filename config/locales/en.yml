@@ -5,7 +5,6 @@ en:
         unit: £
   service:
     name: Calculate teacher pay
-    email: TODO@CHANGEME
   questions:
     heading: Calculate teacher pay following the 2023 pay award
     no_option:
