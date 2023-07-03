@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   post 'results', to: 'calculations#results', as: :results
   get 'results', to: redirect('/')
 
+  get '/healthcheck', to: proc { [200, {}, ['OK']] }
+
   scope via: :all do
     get '/404', to: 'errors#not_found'
     get '/422', to: 'errors#unprocessable_entity'

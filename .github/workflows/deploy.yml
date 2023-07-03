@@ -26,9 +26,26 @@ jobs:
       runs-on: ubuntu-latest
 
       steps:
-        - name: Placeholder
-          run: |
-            echo run tests
+      - uses: actions/checkout@v3
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: Install dependencies
+        run: |
+          yarn install --frozen-lockfile --check-files
+          bundle install --quiet --retry=5
+
+      - name: Build frontend
+        run: yarn build && yarn build:css
+
+      - name: Run static analysis
+        run: bundle exec rubocop
+
+      - name: Run unit tests
+        run: bundle exec rspec
 
     deploy:
       name: Deploy ${{ matrix.environment }}
