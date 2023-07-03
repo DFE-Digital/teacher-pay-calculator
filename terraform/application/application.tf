@@ -9,6 +9,10 @@ module "application_configuration" {
   secret_key_vault_short = "app"
 
   config_variables = {
+    RAILS_LOG_TO_STDOUT      = 1
+    RAILS_SERVE_STATIC_FILES = 1
+    RAILS_ENV                = "production"
+    ENVIRONMENT_NAME         = var.environment
   }
   secret_variables = {
   }
@@ -27,5 +31,5 @@ module "web_application" {
   kubernetes_config_map_name = module.application_configuration.kubernetes_config_map_name
   kubernetes_secret_name     = module.application_configuration.kubernetes_secret_name
 
-  docker_image           = "${local.docker_repository}:${var.docker_image_tag}"
+  docker_image = "${local.docker_repository}:${var.docker_image_tag}"
 }
