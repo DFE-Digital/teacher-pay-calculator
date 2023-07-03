@@ -4,7 +4,8 @@ concurrency: build_and_deploy_${{ github.ref_name }}
 on:
   push:
     branches:
-    - main
+    - heartbeat
+    # - main
 
 jobs:
     build:
@@ -26,9 +27,21 @@ jobs:
       runs-on: ubuntu-latest
 
       steps:
-        - name: Placeholder
-          run: |
-            echo run tests
+      - uses: actions/checkout@v3
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: Install dependencies
+        run: bundle install --quiet --retry=5
+
+      - name: Run static analysis
+        run: bundle exec rubocop
+
+      - name: Run unit tests
+        run: bundle exec rspec
 
     deploy:
       name: Deploy ${{ matrix.environment }}
