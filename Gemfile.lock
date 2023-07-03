@@ -102,6 +102,8 @@ GEM
     jsbundling-rails (1.1.2)
       railties (>= 6.0.0)
     json (2.6.3)
+    kramdown (2.4.0)
+      rexml
     language_server-protocol (3.17.0.3)
     loofah (2.21.3)
       crass (~> 1.0.2)
@@ -278,6 +280,7 @@ DEPENDENCIES
   govuk-components
   govuk_design_system_formbuilder
   jsbundling-rails
+  kramdown
   prettier_print
   propshaft
   puma (~> 5.0)
