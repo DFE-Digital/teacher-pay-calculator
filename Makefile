@@ -39,7 +39,6 @@ terraform-init: bin/terrafile set-azure-account
 	$(eval export TF_VAR_config_short=${CONFIG_SHORT})
 	$(eval export TF_VAR_service_name=${SERVICE_NAME})
 	$(eval export TF_VAR_service_short=${SERVICE_SHORT})
-	$(eval export TF_VAR_rg_name=${RESOURCE_GROUP_NAME})
 	$(eval export TF_VAR_docker_image_tag=${DOCKER_IMAGE_TAG})
 
 terraform-plan: terraform-init
@@ -67,6 +66,8 @@ deploy-arm-resources: arm-deployment
 validate-arm-resources: set-what-if arm-deployment
 
 domains-infra-init: domains set-azure-account
+	./bin/terrafile -p terraform/domains/infrastructure/vendor/modules -f terraform/domains/infrastructure/config/zones_Terrafile
+
 	terraform -chdir=terraform/domains/infrastructure init -reconfigure -upgrade \
 		-backend-config=resource_group_name=${RESOURCE_GROUP_NAME} \
 		-backend-config=storage_account_name=${STORAGE_ACCOUNT_NAME} \
@@ -76,9 +77,11 @@ domains-infra-plan: domains domains-infra-init
 	terraform -chdir=terraform/domains/infrastructure plan -var-file config/zones.tfvars.json
 
 domains-infra-apply: domains domains-infra-init
-	terraform -chdir=terraform/domains/infrastructure apply -var-file config/zones.tfvars.json
+	terraform -chdir=terraform/domains/infrastructure apply -var-file config/zones.tfvars.json ${AUTO_APPROVE}
 
 domains-init: domains set-azure-account
+	./bin/terrafile -p terraform/domains/environment_domains/vendor/modules -f terraform/domains/environment_domains/config/${CONFIG}_Terrafile
+
 	terraform -chdir=terraform/domains/environment_domains init -upgrade -reconfigure \
 		-backend-config=resource_group_name=${RESOURCE_GROUP_NAME} \
 		-backend-config=storage_account_name=${STORAGE_ACCOUNT_NAME} \
