@@ -37,4 +37,5 @@ html lang='en' class='govuk-template'
           .govuk-grid-column-two-thirds
             = yield
 
+  - footer_links = { 'Privacy notice' => privacy_notice_path, 'Accessibility statement' => accessibility_statement_path, 'Terms and conditions' => terms_and_conditions_path }
   = govuk_footer(meta_items: footer_links)
