@@ -8,11 +8,11 @@ module "application_configuration" {
   config_short           = var.config_short
   secret_key_vault_short = "app"
 
+  is_rails_application = true
+
   config_variables = {
-    RAILS_LOG_TO_STDOUT      = 1
-    RAILS_SERVE_STATIC_FILES = 1
-    RAILS_ENV                = "production"
-    ENVIRONMENT_NAME         = var.environment
+    RAILS_ENV        = "production"
+    ENVIRONMENT_NAME = var.environment
   }
   secret_variables = {
   }
