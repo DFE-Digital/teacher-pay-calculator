@@ -4,6 +4,10 @@ Rails.application.routes.draw do
   post 'results', to: 'calculations#results', as: :results
   get 'results', to: redirect('/')
 
+  get '/privacy-notice', to: 'pages#privacy_notice'
+  get '/accessibility-statement', to: 'pages#accessibility_statement'
+  get '/terms-and-conditions', to: 'pages#terms_and_conditions'
+
   get '/healthcheck', to: proc { [200, {}, ['OK']] }
 
   scope via: :all do

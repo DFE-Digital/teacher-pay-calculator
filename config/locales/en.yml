@@ -5,7 +5,6 @@ en:
         unit: £
   service:
     name: Calculate teacher pay
-    email: TODO@CHANGEME
   questions:
     heading: Calculate teacher pay following the 2023 pay award
     no_option:
@@ -30,7 +29,7 @@ en:
       title: Your answers
     start_again:
       label: Start again
-      text: Start again if you want to try this calculator with a different pay band.
+      text: If you expect your pay band to change, you can try this calculator on your expected pay band.
   error_pages:
     internal_server_error: Something's gone wrong
     not_found: Page not found
