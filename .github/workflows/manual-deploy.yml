@@ -1,0 +1,41 @@
+name: Deploy to AKS (Manual)
+concurrency: manual_deploy_${{ github.event.inputs.environment }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      docker-image-tag:
+        description: Docker image tag
+        required: true
+        default: latest
+      environment:
+        description: Target environment
+        required: true
+        default: development
+
+jobs:
+  manual-deploy:
+    name: Deploy ${{ github.event.inputs.environment }}
+    runs-on: ubuntu-latest
+    environment:
+      name: ${{ github.event.inputs.environment }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 1.5.1
+          terraform_wrapper: false
+
+      - uses: DFE-Digital/github-actions/set-arm-environment-variables@master
+        with:
+          azure-credentials: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Apply Terraform
+        run: |
+          make ci ${{ github.event.inputs.environment }} terraform-apply
+        env:
+          TF_VAR_azure_sp_credentials_json: ${{ secrets.AZURE_CREDENTIALS }}
+          DOCKER_IMAGE_TAG: ${{ github.event.inputs.docker-image-tag }}
