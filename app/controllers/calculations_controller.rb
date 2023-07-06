@@ -1,11 +1,12 @@
 class CalculationsController < ApplicationController
   def new
-    @calculation = Calculation.new
   end
 
   def results
-    @calculation = Calculation.new(calculation_params)
-    if @calculation.valid?
+    form.assign_attributes(calculation_params)
+
+    if form.valid?
+      @presenter = SalaryPresenter.new(form.salary_figure)
       render :results
     else
       render :new, status: :unprocessable_entity
@@ -15,9 +16,11 @@ class CalculationsController < ApplicationController
   private
 
   def calculation_params
-    params.require(:calculation).permit(
-      :area_id,
-      :current_payband_or_spine_point_id
-     )
+    params.require(:calculation_form).permit(:area_id, :pay_band_id)
   end
+
+  def form
+    @form ||= CalculationForm.new
+  end
+  helper_method :form
 end

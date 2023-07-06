@@ -1,6 +1,6 @@
-Area = Struct.new(:id, :name)
+PayBand = Struct.new(:id, :name, :type)
 
-class << Area
+class << PayBand
   delegate :find, :all, :pluck, to: :store
 
   def store

@@ -25,7 +25,13 @@ end
 
 group :test, :development do
   gem 'byebug'
+end
+
+group :test do
+  gem 'capybara'
+  gem 'capybara-screenshot'
   gem 'factory_bot_rails'
+  gem 'ffaker'
   gem 'rspec'
   gem 'rspec-rails'
 end

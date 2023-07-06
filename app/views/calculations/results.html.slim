@@ -1,6 +1,4 @@
-- results = ResultsPresenter.new(calculation: @calculation)
-
-= govuk_panel(title_text: results.primary_text, text: results.secondary_text)
+= govuk_panel(title_text: @presenter.primary_text, text: @presenter.secondary_text)
 
 = govuk_inset_text(text: t('results.inset'))
 
@@ -9,12 +7,12 @@ h1.govuk-heading-m
 
 = govuk_summary_list(actions: false) do |summary_list|
   - summary_list.with_row do |row|
-    - row.with_key { t('questions.current_payband.label') }
-    - row.with_value { results.current_payband_or_spine_point.name }
+    - row.with_key { t('questions.current_pay_band.label') }
+    - row.with_value { form.pay_band.name }
 
   - summary_list.with_row do |row|
     - row.with_key { t('questions.area.label') }
-    - row.with_value { results.area.name }
+    - row.with_value { form.area.name }
 
 p.govuk-body
   = t('results.start_again.text')
