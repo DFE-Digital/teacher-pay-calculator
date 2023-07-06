@@ -19,11 +19,11 @@ class DataLoader::Calculator
 
     def call
       {
-        type: type,
-        current: current,
-        future: future,
-        increase: increase,
-        increase_percentage: increase_percentage
+        type:,
+        current:,
+        future:,
+        increase:,
+        increase_percentage:
       }
     end
   end
