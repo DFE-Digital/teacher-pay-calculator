@@ -43,7 +43,11 @@ RSpec.describe SalaryPresenter do
       let(:expected_text) do
         I18n.t('results.panel.spine_point_outcome.text',
           increase_value: number_to_currency(salary_figures.increase, precision: 0),
-          increase_percentage: number_with_precision(salary_figures.increase_percentage, precision: 1)
+          increase_percentage: number_with_precision(
+            salary_figures.increase_percentage,
+            precision: 1,
+            strip_insignificant_zeros: true
+          )
         )
       end
 
@@ -56,7 +60,11 @@ RSpec.describe SalaryPresenter do
       let(:expected_text) do
         I18n.t('results.panel.pay_band_outcome.text',
           increase_value_min: number_to_currency(salary_figures.increase.min, precision: 0),
-          increase_percentage_min: number_with_precision(salary_figures.increase_percentage.min, precision: 1)
+          increase_percentage_min: number_with_precision(
+            salary_figures.increase_percentage.min,
+            precision: 1,
+            strip_insignificant_zeros: true
+          )
         )
       end
 
