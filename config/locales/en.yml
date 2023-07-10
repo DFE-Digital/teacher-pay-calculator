@@ -8,7 +8,7 @@ en:
   questions:
     heading: Calculate teacher pay following the 2023 pay award
     no_option:
-      label: Choose a pay band
+      label: Select a pay band
     current_pay_band:
       label: What is your pay band?
     area:

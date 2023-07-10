@@ -7,7 +7,7 @@
     :id,
     :name,
     label: { text: t('questions.current_pay_band.label'), size: 's' },
-    options: { include_blank: "Choose one pay band" }
+    options: { include_blank: t('questions.no_option.label') }
 
   = f.govuk_radio_buttons_fieldset(:area_id,
       legend: { size: 's', text: t('questions.area.label') },
