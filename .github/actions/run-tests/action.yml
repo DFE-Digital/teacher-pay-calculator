@@ -1,0 +1,32 @@
+name: Run tests
+description: Runs tests and static analysis
+
+runs:
+  using: composite
+  steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        bundler-cache: true
+
+    - name: Install dependencies
+      shell: bash
+      run: |
+        yarn install --frozen-lockfile --check-files
+        bundle install --quiet --retry=5
+
+    - name: Build frontend
+      shell: bash
+      run: yarn build && yarn build:css
+
+    - name: Run static analysis
+      shell: bash
+      run: |
+        bundle exec rubocop
+        bundle exec brakeman
+
+    - name: Run unit tests
+      shell: bash
+      run: bundle exec rspec
