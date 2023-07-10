@@ -35,6 +35,8 @@ module TeacherPayCalculator
 
     config.assets.paths << Rails.root.join('node_modules/govuk-frontend/govuk/assets')
 
+    config.environment_name = ActiveSupport::StringInquirer.new(ENV.fetch('ENVIRONMENT_NAME', 'local'))
+
     config.exceptions_app = routes
   end
 end
