@@ -7,6 +7,7 @@ variable "config_short" {}
 variable "service_name" {}
 variable "service_short" {}
 variable "docker_image_tag" {}
+variable "replicas" { default = 1 }
 variable "external_url" { default = null }
 variable "statuscake_contact_groups" { default = [] }
 variable "enable_monitoring" { default = false }
