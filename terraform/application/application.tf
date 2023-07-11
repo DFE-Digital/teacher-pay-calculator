@@ -11,8 +11,10 @@ module "application_configuration" {
   is_rails_application = true
 
   config_variables = {
-    RAILS_ENV        = "production"
-    ENVIRONMENT_NAME = var.environment
+    RAILS_ENV         = "production"
+    ENVIRONMENT_NAME  = var.environment
+    RAILS_MAX_THREADS = "100"
+    RAILS_LOG_LEVEL   = "info"
   }
   secret_variables = {
   }
@@ -27,6 +29,7 @@ module "web_application" {
   environment  = var.environment
   service_name = var.service_name
 
+  replicas                   = var.replicas
   cluster_configuration_map  = module.cluster_data.configuration_map
   kubernetes_config_map_name = module.application_configuration.kubernetes_config_map_name
   kubernetes_secret_name     = module.application_configuration.kubernetes_secret_name

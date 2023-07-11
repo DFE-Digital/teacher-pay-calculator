@@ -29,7 +29,7 @@ html lang='en' class='govuk-template'
     = govuk_header(homepage_url: 'https://www.gov.uk', service_name: t('service.name'), service_url: '/')
 
     .govuk-width-container
-      - unless ENV['ENVIRONMENT_NAME'] == 'production'
+      - unless Rails.application.config.environment_name.production?
         = govuk_phase_banner(tag: { text: 'Warning', colour: 'pink' }, text: 'This is a test environment and does not contain nor produce any real or accurate data')
 
       .govuk-main-wrapper

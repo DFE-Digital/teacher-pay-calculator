@@ -31,7 +31,11 @@ module TeacherPayCalculator
     # config.time_zone = "Central Time (US & Canada)"
     config.eager_load_paths << Rails.root.join('app/presenters')
 
+    config.middleware.use Rack::Deflater
+
     config.assets.paths << Rails.root.join('node_modules/govuk-frontend/govuk/assets')
+
+    config.environment_name = ActiveSupport::StringInquirer.new(ENV.fetch('ENVIRONMENT_NAME', 'local'))
 
     config.exceptions_app = routes
   end
