@@ -14,6 +14,7 @@ module "application_configuration" {
     RAILS_ENV         = "production"
     ENVIRONMENT_NAME  = var.environment
     RAILS_MAX_THREADS = "100"
+    RAILS_LOG_LEVEL   = "info"
   }
   secret_variables = {
   }
