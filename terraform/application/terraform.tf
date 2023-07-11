@@ -10,7 +10,7 @@ terraform {
       version = "2.21.1"
     }
     statuscake = {
-      source = "StatusCakeDev/statuscake"
+      source  = "StatusCakeDev/statuscake"
       version = "2.1.0"
     }
   }
