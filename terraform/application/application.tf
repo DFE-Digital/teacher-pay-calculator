@@ -11,8 +11,9 @@ module "application_configuration" {
   is_rails_application = true
 
   config_variables = {
-    RAILS_ENV        = "production"
-    ENVIRONMENT_NAME = var.environment
+    RAILS_ENV         = "production"
+    ENVIRONMENT_NAME  = var.environment
+    RAILS_MAX_THREADS = "100"
   }
   secret_variables = {
   }
