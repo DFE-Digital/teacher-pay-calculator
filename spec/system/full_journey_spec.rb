@@ -12,7 +12,7 @@ RSpec.feature 'Teacher Pay Calculator' do
 
     expect(page).to have_content t('questions.heading')
     expect(page).to have_select t('questions.current_pay_band.label'),
-      options: ['Choose one pay band'] + pay_bands.map(&:name),
+      options: [t('questions.no_option.label')] + pay_bands.map(&:name),
       selected: []
 
     areas.each { |area| find :radio_button, area.name }
