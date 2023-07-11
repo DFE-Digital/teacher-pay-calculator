@@ -31,226 +31,226 @@ development: &default
   pay_ranges:
     unq1:
       rest_of_england:
-        current: [18169]
-        future: [19340]
+        current: [19340]
+        future: [20598]
       london_fringe:
-        current: [19363]
-        future: [20594]
+        current: [20594]
+        future: [21933]
       outer_london:
-        current: [21582]
-        future: [22924]
+        current: [22924]
+        future: [24415]
       inner_london:
-        current: [22849]
-        future: [24254]
+        current: [24254]
+        future: [25831]
     unq2:
       rest_of_england:
-        current: [20282]
-        future: [21559]
+        current: [21559]
+        future: [22961]
       london_fringe:
-        current: [21473]
-        future: [22810]
+        current: [22810]
+        future: [24293]
       outer_london:
-        current: [23696]
-        future: [25144]
+        current: [25144]
+        future: [26779]
       inner_london:
-        current: [24962]
-        future: [26473]
+        current: [26473]
+        future: [28194]
     unq3:
       rest_of_england:
-        current: [22394]
-        future: [23777]
+        current: [23777]
+        future: [25323]
       london_fringe:
-        current: [23587]
-        future: [25029]
+        current: [25029]
+        future: [26656]
       outer_london:
-        current: [25809]
-        future: [27362]
+        current: [27362]
+        future: [29141]
       inner_london:
-        current: [27075]
-        future: [28692]
+        current: [28692]
+        future: [30557]
     unq4:
       rest_of_england:
-        current: [24507]
-        future: [25733]
+        current: [25733]
+        future: [27406]
       london_fringe:
-        current: [25699]
-        future: [26984]
+        current: [26984]
+        future: [28738]
       outer_london:
-        current: [27926]
-        future: [29323]
+        current: [29323]
+        future: [31229]
       inner_london:
-        current: [29187]
-        future: [30647]
+        current: [30647]
+        future: [32640]
     unq5:
       rest_of_england:
-        current: [26622]
-        future: [27954]
+        current: [27954]
+        future: [29772]
       london_fringe:
-        current: [27812]
-        future: [29203]
+        current: [29203]
+        future: [31102]
       outer_london:
-        current: [30037]
-        future: [31539]
+        current: [31539]
+        future: [33590]
       inner_london:
-        current: [31298]
-        future: [32863]
+        current: [32863]
+        future: [35000]
     unq6:
       rest_of_england:
-        current: [28735]
-        future: [30172]
+        current: [30172]
+        future: [32134]
       london_fringe:
-        current: [29924]
-        future: [31421]
+        current: [31421]
+        future: [33464]
       outer_london:
-        current: [32151]
-        future: [33759]
+        current: [33759]
+        future: [35954]
       inner_london:
-        current: [33410]
-        future: [35081]
+        current: [35081]
+        future: [37362]
     m1:
       rest_of_england:
-        current: [25714]
-        future: [28000]
+        current: [28000]
+        future: [30000]
       london_fringe:
-        current: [26948]
-        future: [29344]
+        current: [29344]
+        future: [31350]
       outer_london:
-        current: [29915]
-        future: [32407]
+        current: [32407]
+        future: [34514]
       inner_london:
-        current: [32157]
-        future: [34502]
+        current: [34502]
+        future: [36745]
     m2:
       rest_of_england:
-        current: [27600]
-        future: [29800]
+        current: [29800]
+        future: [31737]
       london_fringe:
-        current: [28828]
-        future: [31126]
+        current: [31126]
+        future: [33150]
       outer_london:
-        current: [31605]
-        future: [34103]
+        current: [34103]
+        future: [36320]
       inner_london:
-        current: [33658]
-        future: [36141]
+        current: [36141]
+        future: [38491]
     m3:
       rest_of_england:
-        current: [29664]
-        future: [31750]
+        current: [31750]
+        future: [33814]
       london_fringe:
-        current: [30883]
-        future: [33055]
+        current: [33055]
+        future: [35204]
       outer_london:
-        current: [33383]
-        future: [35886]
+        current: [35886]
+        future: [38219]
       inner_london:
-        current: [35336]
-        future: [37857]
+        current: [37857]
+        future: [40318]
     m4:
       rest_of_england:
-        current: [31778]
-        future: [33850]
+        current: [33850]
+        future: [36051]
       london_fringe:
-        current: [32999]
-        future: [35151]
+        current: [35151]
+        future: [37436]
       outer_london:
-        current: [35264]
-        future: [37763]
+        current: [37763]
+        future: [40218]
       inner_london:
-        current: [36866]
-        future: [39655]
+        current: [39655]
+        future: [42233]
     m5:
       rest_of_england:
-        current: [34100]
-        future: [35990]
+        current: [35990]
+        future: [38330]
       london_fringe:
-        current: [35307]
-        future: [37264]
+        current: [37264]
+        future: [39687]
       outer_london:
-        current: [38052]
-        future: [40050]
+        current: [40050]
+        future: [42654]
       inner_london:
-        current: [39494]
-        future: [41892]
+        current: [41892]
+        future: [44615]
     m6:
       rest_of_england:
-        current: [36961]
-        future: [38810]
+        current: [38810]
+        future: [41333]
       london_fringe:
-        current: [38174]
-        future: [40083]
+        current: [40083]
+        future: [42689]
       outer_london:
-        current: [41136]
-        future: [43193]
+        current: [43193]
+        future: [46001]
       inner_london:
-        current: [42624]
-        future: [44756]
+        current: [44756]
+        future: [47666]
     u1:
       rest_of_england:
-        current: [38690]
-        future: [40625]
+        current: [40625]
+        future: [43266]
       london_fringe:
-        current: [39864]
-        future: [41858]
+        current: [41858]
+        future: [44579]
       outer_london:
-        current: [42559]
-        future: [44687]
+        current: [44687]
+        future: [47592]
       inner_london:
-        current: [46971]
-        future: [49320]
+        current: [49320]
+        future: [52526]
     u2:
       rest_of_england:
-        current: [40124]
-        future: [42131]
+        current: [42131]
+        future: [44870]
       london_fringe:
-        current: [41295]
-        future: [43360]
+        current: [43360]
+        future: [46179]
       outer_london:
-        current: [44133]
-        future: [46340]
+        current: [46340]
+        future: [49353]
       inner_london:
-        current: [49279]
-        future: [51743]
+        current: [51743]
+        future: [55107]
     u3:
       rest_of_england:
-        current: [41604]
-        future: [43685]
+        current: [43685]
+        future: [46525]
       london_fringe:
-        current: [42780]
-        future: [44919]
+        current: [44919]
+        future: [47839]
       outer_london:
-        current: [45766]
-        future: [48055]
+        current: [48055]
+        future: [51179]
       inner_london:
-        current: [50935]
-        future: [53482]
+        current: [53482]
+        future: [56959]
 
     leading_practitioner:
       rest_of_england:
-        current: [42402, 64461]
-        future: [44523, 67685]
+        current: [44523, 67685]
+        future: [47417, 72085]
       london_fringe:
-        current: [43570, 65531]
-        future: [45749, 68913]
+        current: [45749, 68913]
+        future: [48723, 73393]
       outer_london:
-        current: [45766, 67828]
-        future: [48055, 71220]
+        current: [48055, 71220]
+        future: [51179, 75850]
       inner_london:
-        current: [50415, 72460]
-        future: [52936, 76104]
+        current: [52936, 76104]
+        future: [56377, 81051]
     leadership:
       rest_of_england:
-        current: [42195, 117197]
-        future: [44305, 123057]
+        current: [44305, 123057]
+        future: [47185, 131056]
       london_fringe:
-        current: [43356, 118356]
-        future: [45524, 124274]
+        current: [45524, 124274]
+        future: [48484, 132352]
       outer_london:
-        current: [45542, 120513]
-        future: [47820, 126539]
+        current: [47820, 126539]
+        future: [50929, 134765]
       inner_london:
-        current: [50167, 125098]
-        future: [52676, 131353]
+        current: [52676, 131353]
+        future: [56100, 139891]
 
 test:
   paybands_and_spine_points: {}
