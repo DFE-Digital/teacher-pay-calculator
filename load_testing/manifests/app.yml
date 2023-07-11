@@ -1,0 +1,41 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: k6-client
+  labels:
+    app: k6-client
+spec:
+  backoffLimit: 0
+  template:
+    metadata:
+      labels:
+        app: k6-client
+    spec:
+      nodeSelector:
+        teacherservices.cloud/node_pool: applications
+        kubernetes.io/os: linux
+      restartPolicy: Never
+      containers:
+      - name: k6-client
+        image: ghcr.io/dfe-digital/k6-client:3
+        env:
+        - name: BASE_URL
+          value: "https://development.calculate-teacher-pay.education.gov.uk"
+        - name: HTTP_USERNAME
+          value: "<REPLACE ME>"
+        - name: HTTP_PASSWORD
+          value: "<REPLACE ME>"
+        - name: RAMP_UP_TIME
+          value: "300s"
+        - name: VUSERS
+          value: "100"
+        ports:
+        - containerPort: 5665
+        resources:
+          requests:
+            memory: 1G
+            cpu: 1
+          limits:
+            memory: 1G
+            cpu: 1
