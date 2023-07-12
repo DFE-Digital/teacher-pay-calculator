@@ -34,5 +34,7 @@ module "web_application" {
   kubernetes_config_map_name = module.application_configuration.kubernetes_config_map_name
   kubernetes_secret_name     = module.application_configuration.kubernetes_secret_name
 
-  docker_image = "${local.docker_repository}:${var.docker_image_tag}"
+  docker_image                 = "${local.docker_repository}:${var.docker_image_tag}"
+  github_username              = module.infrastructure_secrets.map.GITHUB-USERNAME
+  github_personal_access_token = module.infrastructure_secrets.map.GITHUB-PERSONAL-ACCESS-TOKEN
 }
