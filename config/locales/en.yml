@@ -24,7 +24,8 @@ en:
       pay_band_outcome:
         title: The pay range for %{pay_band} will be between %{future_value_min} and %{future_value_max} from 1 September 2023
         text: This is a minimum increase of %{increase_value_min}, which is a %{increase_percentage_min}% pay rise
-    inset: This calculator is indicative only. The new pay award is subject to a statutory consultation period and your school can choose how to implement it.
+    description: This calculator is indicative only. The new pay award is subject to a statutory consultation period and your school can choose how to implement it.
+    funding_html: To support schools with meeting the costs of the pay award, schools will receive an extra £525 million in the 2023 to 2024 financial year and £900 million in the 2024 to 2025 financial year. <a class="govuk-link" href="https://www.gov.uk/government/publications/teachers-pay-additional-grant-2023-to-2024">Learn more about funding for schools</a>.
     summary:
       title: Your answers
     start_again:

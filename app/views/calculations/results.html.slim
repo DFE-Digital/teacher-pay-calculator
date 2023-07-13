@@ -1,6 +1,10 @@
 = govuk_panel(title_text: @presenter.primary_text, text: @presenter.secondary_text)
 
-= govuk_inset_text(text: t('results.inset'))
+p.govuk-body
+  = t('results.description')
+
+p.govuk-body
+  = t('results.funding_html')
 
 h1.govuk-heading-m
   = t('results.summary.title')
