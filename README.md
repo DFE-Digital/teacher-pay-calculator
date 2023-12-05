@@ -47,7 +47,10 @@ In some circumstances, you may need to trigger a manual deployment to
 `development` first, e.g. to test a new feature before it's ready for release.
 
 To trigger a manual deployment, you can use the Github Actions workflow
-"Deploy to AKS (Manual)", specifying a target docker image tag and environment.
+"Deploy to AKS (Manual)", specifying:
+
+- a target docker image tag (`main` by default)
+- the target environment (`development` or `production`)
 
 For `development`, you'd normally need to build the docker image locally and
 push it to the repo's docker registry. Example steps:
