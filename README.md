@@ -84,8 +84,10 @@ follow the instructions at https://docs.github.com/en/packages/working-with-a-gi
 
 ## Monitoring
 
-Sentry is configured for both hosted environments.
+Sentry is configured for both hosted environments and [alerts](https://dfe-teacher-services.sentry.io/alerts/rules/?project=4505442196783104)
+will be sent to the `#claim_tech` Slack channel as well as to the [project team
+members](https://dfe-teacher-services.sentry.io/settings/teams/teacher-pay-calculator/members/).
 
-StatusCake is also configured to check against the `/healthcheck` endpoint.
-
-Alerts will be sent to the #claim_tech Slack channel.
+StatusCake is also configured to check against the `/healthcheck` endpoint, and
+the alerts will be sent to the `#claim_tech` Slack channel as well as to the
+email and/or mobile phone number lists added to the [Teacher payments contact group](https://app.statuscake.com/ContactGroup.php?CUID=195955).
