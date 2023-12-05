@@ -19,6 +19,7 @@ gem 'tzinfo-data', platforms: %i[ mingw mswin x64_mingw jruby ]
 
 group :development do
   gem 'brakeman', require: false
+  gem 'foreman', require: false
   gem 'prettier_print', require: false
   gem 'rubocop-govuk', require: false
   gem 'web-console'
