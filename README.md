@@ -95,6 +95,17 @@ where `DOCKER_IMAGE_TAG` is an environment variable exported as above.
 * The `development` environment is protected with Basic auth; the credentials
   can be found in the `s189t01-ctp-dv-inf-kv` keyvault.
 
+## Custom domains
+
+The `calculate-teacher-pay.education.gov.uk` and
+`development.calculate-teacher-pay.education.gov.uk` domains are set up by
+terraform, using Azure DNS and Azure front door. The certificates are generated
+by front door and rotated automatically.
+
+However, `calculate-teacher-pay.education.gov.uk` (the apex domain) must be
+revalidated every 180 days or it will expire. A StatusCake monitor will alert 30
+days before expiry. When it happens follow [the revalidation process](https://learn.microsoft.com/en-us/azure/frontdoor/apex-domain?source=recommendations#azure-front-door-managed-tls-certificate-rotation).
+
 ## Monitoring
 
 Sentry is configured for both hosted environments and [alerts](https://dfe-teacher-services.sentry.io/alerts/rules/?project=4505442196783104)
