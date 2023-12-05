@@ -27,7 +27,7 @@ $ bundle exec rspec
 ```
 
 To perform manual testing against the hosted `development` enviornment, e.g.
-when testing a dependency update, follow the instruction below (see [Deployment](#deployment)).
+when testing a dependency update, follow the instructions below (see [Deployment](#deployment)).
 
 Please note: the hosted `development` environment is deployed with
 `RAILS_ENV=production`.
@@ -41,12 +41,12 @@ There currently are two hosted environments in AKS, `development` and
 - https://calculate-teacher-pay.education.gov.uk/
 
 Every merge to `main` will trigger a deployment to `development` and
-`production` via a Github Action workflow.
+`production` via a Github Actions workflow.
 
 In some circumstances, you may need to trigger a manual deployment to
 `development` first, e.g. to test a new feature before it's ready for release.
 
-To trigger a manual deployment, you can use the Github Action workflow
+To trigger a manual deployment, you can use the Github Actions workflow
 "Deploy to AKS (Manual)", specifying a target docker image tag and environment.
 
 For `development`, you'd normally need to build the docker image locally and
