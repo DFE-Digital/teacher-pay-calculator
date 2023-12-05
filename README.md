@@ -10,7 +10,7 @@ This repository contains the source code and infrastructure definitions for the
 
 After cloning the repository, `cd` into the folder and install the dependencies with:
 
-```
+```sh
 $ yarn install
 $ bundle install
 $ bundle exec foreman start
@@ -22,7 +22,7 @@ Finally, visit: http://127.0.0.1:3000/
 
 To run the unit test suite locally:
 
-```
+```sh
 $ bundle exec rspec
 ```
 
@@ -46,24 +46,37 @@ Every merge to `main` will trigger a deployment to `development` and
 In some circumstances, you may need to trigger a manual deployment to
 `development` first, e.g. to test a new feature before it's ready for release.
 
+### Manual deployment using Github Actions workflow
+
 To trigger a manual deployment, you can use the Github Actions workflow
 "Deploy to AKS (Manual)", specifying:
 
 - a target docker image tag (`main` by default)
 - the target environment (`development` or `production`)
 
-For `development`, you'd normally need to build the docker image locally and
-push it to the repo's docker registry. Example steps:
+To build the docker image locally and push it to the repo's docker registry, you
+can follow these steps:
 
-```
-$ export LATEST_COMMIT_SHA=git rev-parse --verify HEAD
+```sh
+$ export DOCKER_IMAGE_TAG=git rev-parse --verify HEAD
 $ docker buildx build --platform linux/amd64 --output type=docker . \
-  -t ghcr.io/dfe-digital/teacher-pay-calculator:$LATEST_COMMIT_SHA
-$ docker push ghcr.io/dfe-digital/teacher-pay-calculator:$LATEST_COMMIT_SHA
+  -t ghcr.io/dfe-digital/teacher-pay-calculator:$DOCKER_IMAGE_TAG
+$ docker push ghcr.io/dfe-digital/teacher-pay-calculator:$DOCKER_IMAGE_TAG
 ```
 
 To authenticate with the registry, make sure you are added to it and
 follow the instructions at https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry#authenticating-with-a-personal-access-token-classic
+
+### Manual deployment using `make`
+
+As an alternative, you can trigger a manual deployment using `make`:
+
+```sh
+$ make development terraform-apply DOCKER_IMAGE_TAG=xxx
+$ make production terraform-apply DOCKER_IMAGE_TAG=xxx
+```
+
+where `DOCKER_IMAGE_TAG` is an environment variable exported as above.
 
 ** **CAVEATS** **
 
