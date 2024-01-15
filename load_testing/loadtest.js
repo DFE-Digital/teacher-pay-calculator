@@ -1,8 +1,8 @@
 // Import necessary modules
-import encoding from 'k6/encoding';
-import { Trend } from 'k6/metrics';
-import { check, group, sleep } from 'k6';
-import http from 'k6/http';
+import encoding from "k6/encoding";
+import { Trend } from "k6/metrics";
+import { check, group, sleep } from "k6";
+import http from "k6/http";
 
 //define configuration
 export const options = {
@@ -19,16 +19,14 @@ export const options = {
     //   duration: '30s',
     // }
     average_load: {
-      executor: 'ramping-vus',
-      stages: [
-        { duration: __ENV.RAMP_UP_TIME, target: __ENV.VUSERS }
-      ],
+      executor: "ramping-vus",
+      stages: [{ duration: __ENV.RAMP_UP_TIME, target: __ENV.VUSERS }],
     },
-  }
+  },
 };
 
-const formTrendCheck = new Trend('endpoint_get_form');
-const resultsTrendCheck = new Trend('endpoint_post_results');
+const formTrendCheck = new Trend("endpoint_get_form");
+const resultsTrendCheck = new Trend("endpoint_post_results");
 
 // set baseURL
 const baseUrl = __ENV.BASE_URL;
@@ -42,23 +40,23 @@ const encodedCredentials = encoding.b64encode(credentials);
 // test params
 const params = {
   headers: {
-    'Authorization': `Basic ${encodedCredentials}`,
-    'Content-Type': 'application/json',
-    'Accept-Encoding': 'gzip, deflate, br'
+    Authorization: `Basic ${encodedCredentials}`,
+    "Content-Type": "application/json",
+    "Accept-Encoding": "gzip, deflate, br",
   },
 };
 
 // test payload
 const payload = JSON.stringify({
-  'calculation_form': {
-    'area_id': 'inner_london',
-    'pay_band_id': 'unq1'
-  }
+  calculation_form: {
+    area_id: "inner_london",
+    pay_band_id: "unq1",
+  },
 });
 
 export default function () {
   // Calculation flow
-  group('Calculation flow', function () {
+  group("Calculation flow", function () {
     // form page
     let response = http.get(`${baseUrl}/`, params);
     formTrendCheck.add(response.timings.duration);
@@ -75,9 +73,9 @@ export default function () {
 
 function runChecks(res) {
   check(res, {
-    'has status 200': (r) => r.status === 200,
+    "has status 200": (r) => r.status === 200,
   });
   check(res, {
-    'uses gzip encoding': (r) => r.headers['Content-Encoding'] === 'gzip',
+    "uses gzip encoding": (r) => r.headers["Content-Encoding"] === "gzip",
   });
 }

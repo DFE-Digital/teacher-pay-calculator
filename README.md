@@ -1,7 +1,7 @@
 # Calculate teacher pay
 
 > School teachers and leaders in England can use this service to see how their
-  salary could change following the 2023 pay award.
+> salary could change following the 2023 pay award.
 
 This repository contains the source code and infrastructure definitions for the
 'Calculate teacher pay' service, a minimalistic Ruby on Rails application.
@@ -78,21 +78,21 @@ $ make production terraform-apply DOCKER_IMAGE_TAG=xxx
 
 where `DOCKER_IMAGE_TAG` is an environment variable exported as above.
 
-** **CAVEATS** **
+\*\* **CAVEATS** \*\*
 
-* You can use the same workflow to deploy to `production`, although you should
+- You can use the same workflow to deploy to `production`, although you should
   use the deployment via pipeline approach; in other words, simply merge to
   `main` when a branch/PR is ready to go to `production`
-* The current setup relies on a Personal Github Token created by one of the
+- The current setup relies on a Personal Github Token created by one of the
   current maintainers of the project and added to the `s189t01-ctp-dv-inf-kv`
   and `s189t01-ctp-pd-inf-kv` keyvaults; this is not ideal, but it was necessary
   to keep the repository public while we were doing the first and initial
   testing of new salary figures that couldn't be disclosed to the public until
   an official government announcement
-* The Personal Github Token should have an expiration date and refreshed before
+- The Personal Github Token should have an expiration date and refreshed before
   completely expiring, otherwise the currently deployed pods won't be able to
   restart and fetch the docker image, potentially leading to unplanned downtime
-* The `development` environment is protected with Basic auth; the credentials
+- The `development` environment is protected with Basic auth; the credentials
   can be found in the `s189t01-ctp-dv-inf-kv` keyvault.
 
 ## Custom domains
