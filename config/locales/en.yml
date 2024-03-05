@@ -35,6 +35,7 @@ en:
     internal_server_error: Something's gone wrong
     not_found: Page not found
     unprocessable_entity: We're unable to process your request
+    too_many_requests: Sorry, there’s a problem with the service
   activemodel:
     errors:
       models:
