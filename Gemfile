@@ -27,6 +27,7 @@ end
 
 group :test, :development do
   gem 'byebug'
+  gem 'dotenv'
 end
 
 group :test do

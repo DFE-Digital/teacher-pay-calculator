@@ -15,6 +15,7 @@ module "application_configuration" {
     ENVIRONMENT_NAME  = var.environment
     RAILS_MAX_THREADS = "100"
     RAILS_LOG_LEVEL   = "info"
+    INACTIVE_SERVICE  = var.inactive_service
   }
   secret_variables = {
   }

@@ -11,6 +11,7 @@ variable "replicas" { default = 1 }
 variable "external_url" { default = null }
 variable "statuscake_contact_groups" { default = [] }
 variable "enable_monitoring" { default = false }
+variable "inactive_service" { default = false }
 
 locals {
   docker_repository = "ghcr.io/dfe-digital/teacher-pay-calculator"

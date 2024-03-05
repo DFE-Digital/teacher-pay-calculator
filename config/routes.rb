@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  if Rails.application.config.x.inactive_service
+    match "(*any)", to: "pages#inactive_service", via: :all
+  end
+
   root to: 'calculations#new', as: :new_calculation
 
   post 'results', to: 'calculations#results', as: :results

@@ -1,1 +1,2 @@
 Rails.application.config.to_prepare { DataLoader.new.load_all! }
+Rails.application.config.x.inactive_service = ENV["INACTIVE_SERVICE"] == "true"
