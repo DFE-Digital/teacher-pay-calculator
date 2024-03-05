@@ -1,0 +1,5 @@
+- content_for :page_title_prefix, t('error_pages.too_many_requests')
+
+h1.govuk-heading-xl = t('error_pages.too_many_requests')
+p.govuk-body #{govuk_link_to("Try again", "/")} shortly.
+p.govuk-body If the problem persists, #{govuk_link_to("contact the Department for Education", "https://form.education.gov.uk/service/Contact_the_Department_for_Education")}.
