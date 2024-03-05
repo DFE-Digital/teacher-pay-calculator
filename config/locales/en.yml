@@ -32,10 +32,10 @@ en:
       label: Start again
       text: If you expect your pay band to change, you can try this calculator on your expected pay band.
   error_pages:
-    internal_server_error: Something's gone wrong
+    internal_server_error: Something’s gone wrong
     not_found: Page not found
-    unprocessable_entity: We're unable to process your request
     too_many_requests: Sorry, there’s a problem with the service
+    unprocessable_entity: We’re unable to process your request
   activemodel:
     errors:
       models:
