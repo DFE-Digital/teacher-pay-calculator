@@ -6,6 +6,12 @@
 This repository contains the source code and infrastructure definitions for the
 'Calculate teacher pay' service, a minimalistic Ruby on Rails application.
 
+> **Important**: As of March 2024, this service is not active anymore.
+>
+> If you are resuming work on this repo after a period of service inactivity,
+> please make sure the project receives any outstanding updates and that it is
+> deployable by contacting the Ops team.
+
 ## Local development setup
 
 After cloning the repository, `cd` into the folder and install the dependencies with:
