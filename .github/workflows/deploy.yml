@@ -41,7 +41,7 @@ jobs:
     strategy:
       max-parallel: 1
       matrix:
-        environment: [development, production]
+        environment: []
 
     steps:
       - name: Checkout code
