@@ -6,6 +6,12 @@
 This repository contains the source code and infrastructure definitions for the
 'Calculate teacher pay' service, a minimalistic Ruby on Rails application.
 
+> **Important**: As of March 2024, this service is not active anymore.
+>
+> If you are resuming work on this repo after a period of service inactivity,
+> please make sure the project receives any outstanding updates and that it is
+> deployable by contacting the Ops team.
+
 ## Local development setup
 
 After cloning the repository, `cd` into the folder and install the dependencies with:
@@ -58,7 +64,7 @@ To build the docker image locally and push it to the repo's docker registry, you
 can follow these steps:
 
 ```sh
-$ export DOCKER_IMAGE_TAG=git rev-parse --verify HEAD
+$ export DOCKER_IMAGE_TAG=`git rev-parse --verify HEAD`
 $ docker buildx build --platform linux/amd64 --output type=docker . \
   -t ghcr.io/dfe-digital/teacher-pay-calculator:$DOCKER_IMAGE_TAG
 $ docker push ghcr.io/dfe-digital/teacher-pay-calculator:$DOCKER_IMAGE_TAG
@@ -85,7 +91,7 @@ where `DOCKER_IMAGE_TAG` is an environment variable exported as above.
   `main` when a branch/PR is ready to go to `production`
 - The current setup relies on a Personal Github Token created by one of the
   current maintainers of the project and added to the `s189t01-ctp-dv-inf-kv`
-  and `s189t01-ctp-pd-inf-kv` keyvaults; this is not ideal, but it was necessary
+  and `s189p01-ctp-pd-inf-kv` keyvaults; this is not ideal, but it was necessary
   to keep the repository public while we were doing the first and initial
   testing of new salary figures that couldn't be disclosed to the public until
   an official government announcement
