@@ -46,7 +46,7 @@ RSpec.describe 'Calculations', type: :request do
         }
       end
 
-      it { expect(response).to have_http_status(:unprocessable_entity) }
+      it { expect(response).to have_http_status(:unprocessable_content) }
       it { expect(response.body).not_to include('Your answers') }
     end
   end
