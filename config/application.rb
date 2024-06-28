@@ -33,7 +33,7 @@ module TeacherPayCalculator
 
     config.middleware.use Rack::Deflater
 
-    config.assets.paths << Rails.root.join('node_modules/govuk-frontend/govuk/assets')
+    config.assets.paths << Rails.root.join('node_modules/govuk-frontend/dist/govuk/assets')
 
     config.environment_name = ActiveSupport::StringInquirer.new(ENV.fetch('ENVIRONMENT_NAME', 'local'))
 
