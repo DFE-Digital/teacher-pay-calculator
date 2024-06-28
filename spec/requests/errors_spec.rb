@@ -15,7 +15,7 @@ RSpec.describe 'Errors', type: :request do
       get '/422'
     end
 
-    it { expect(response).to have_http_status(:unprocessable_entity) }
+    it { expect(response).to have_http_status(:unprocessable_content) }
     it { expect(response.body).to include(I18n.t('error_pages.unprocessable_entity')) }
   end
 
