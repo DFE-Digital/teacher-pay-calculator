@@ -41,7 +41,7 @@ jobs:
     strategy:
       max-parallel: 1
       matrix:
-        environment: [development]
+        environment: [development, production]
 
     steps:
       - name: Checkout code
@@ -49,7 +49,7 @@ jobs:
 
       - uses: hashicorp/setup-terraform@v3
         with:
-          terraform_version: 1.5.1
+          terraform_version: 1.8.4
           terraform_wrapper: false
 
       - uses: DFE-Digital/github-actions/set-kubelogin-environment@master
