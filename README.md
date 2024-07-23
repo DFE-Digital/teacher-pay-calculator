@@ -1,7 +1,7 @@
 # Calculate teacher pay
 
 > School teachers and leaders in England can use this service to see how their
-> salary could change following the 2023 pay award.
+> salary could change following the 2024 pay award.
 
 This repository contains the source code and infrastructure definitions for the
 'Calculate teacher pay' service, a minimalistic Ruby on Rails application.
