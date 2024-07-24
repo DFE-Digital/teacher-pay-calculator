@@ -99,7 +99,7 @@ where `DOCKER_IMAGE_TAG` is an environment variable exported as above.
   completely expiring, otherwise the currently deployed pods won't be able to
   restart and fetch the docker image, potentially leading to unplanned downtime
 - The `development` environment is protected with Basic auth; the credentials
-  can be found in the `s189t01-ctp-dv-inf-kv` keyvault.
+  can be found in the `s189t01-ctp-dv-app-kv` keyvault.
 
 ## Custom domains
 
