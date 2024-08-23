@@ -20,6 +20,7 @@ jobs:
         with:
           docker-repository: ghcr.io/dfe-digital/teacher-pay-calculator
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          snyk-token: ${{ secrets.SNYK_TOKEN }}
 
   test:
     name: Run tests
