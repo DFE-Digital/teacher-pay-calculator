@@ -14,6 +14,9 @@ jobs:
       docker-image-tag: ${{ steps.build-image.outputs.tag }}
 
     steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
       - name: Build and push docker image
         id: build-image
         uses: DFE-Digital/github-actions/build-docker-image@master
@@ -21,6 +24,7 @@ jobs:
           docker-repository: ghcr.io/dfe-digital/teacher-pay-calculator
           github-token: ${{ secrets.GITHUB_TOKEN }}
           snyk-token: ${{ secrets.SNYK_TOKEN }}
+          context: .
 
   test:
     name: Run tests
