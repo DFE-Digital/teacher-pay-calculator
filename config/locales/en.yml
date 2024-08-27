@@ -6,7 +6,7 @@ en:
   service:
     name: Calculate teacher pay
   questions:
-    heading: Calculate teacher pay following the 2023 pay award
+    heading: Calculate teacher pay following the 2024 pay award
     no_option:
       label: Select a pay band
     current_pay_band:
@@ -19,13 +19,13 @@ en:
   results:
     panel:
       spine_point_outcome:
-        title: The advisory pay point for %{spine_point} will increase to %{value} from 1 September 2023
+        title: The advisory pay point for %{spine_point} will increase to %{value} from 1 September 2024
         text: This is an increase of %{increase_value}, which is a %{increase_percentage}% pay rise
       pay_band_outcome:
-        title: The pay range for %{pay_band} will be between %{future_value_min} and %{future_value_max} from 1 September 2023
+        title: The pay range for %{pay_band} will be between %{future_value_min} and %{future_value_max} from 1 September 2024
         text: This is a minimum increase of %{increase_value_min}, which is a %{increase_percentage_min}% pay rise
     description: This calculator is indicative only. The new pay award is subject to a statutory consultation period and your school can choose how to implement it.
-    funding_html: To support schools with meeting the costs of the pay award, schools will receive an extra £525 million in the 2023 to 2024 financial year and £900 million in the 2024 to 2025 financial year. <a class="govuk-link" href="https://www.gov.uk/government/publications/teachers-pay-additional-grant-2023-to-2024">Learn more about funding for schools</a>.
+    funding_html: We are providing schools with almost £1.1 billion in 2024-25 through the new Core Schools Budget Grant (CSBG), to support them with overall costs, including the costs of this year’s teachers’ pay award. We are also providing an additional £97 million in respect of schools delivering post-16 and early years provision, so together we’re providing almost £1.2 billion additional funding in 2024-25. You can find out more about school funding <a class="govuk-link" href="https://www.gov.uk/government/publications/core-schools-budget-grant-csbg-2024-to-2025">here</a>.
     summary:
       title: Your answers
     start_again:
