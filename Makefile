@@ -1,4 +1,3 @@
-TERRAFILE_VERSION=0.8
 ARM_TEMPLATE_TAG=1.1.6
 RG_TAGS={"Product" : "Teacher services cloud"}
 REGION=UK South
@@ -19,17 +18,17 @@ ci:
 	$(eval export AUTO_APPROVE=-auto-approve)
 	$(eval SKIP_AZURE_LOGIN=true)
 
-bin/terrafile: ## Install terrafile to manage terraform modules
-	curl -sL https://github.com/coretech/terrafile/releases/download/v${TERRAFILE_VERSION}/terrafile_${TERRAFILE_VERSION}_$$(uname)_x86_64.tar.gz \
-		| tar xz -C ./bin terrafile
-
 set-azure-account:
 	[ "${SKIP_AZURE_LOGIN}" != "true" ] && az account set -s ${AZ_SUBSCRIPTION} || true
 
-terraform-init: bin/terrafile set-azure-account
+.PHONY: vendor-modules
+vendor-modules:
+	rm -rf terraform/application/vendor/modules
+	git -c advice.detachedHead=false clone --depth=1 --single-branch --branch ${TERRAFORM_MODULES_TAG} https://github.com/DFE-Digital/terraform-modules.git terraform/application/vendor/modules/aks
+
+terraform-init: vendor-modules set-azure-account
 	$(if ${DOCKER_IMAGE_TAG}, , $(eval DOCKER_IMAGE_TAG=main))
 
-	./bin/terrafile -p terraform/application/vendor/modules -f terraform/application/config/$(CONFIG)_Terrafile
 	terraform -chdir=terraform/application init -upgrade -reconfigure \
 		-backend-config=resource_group_name=${RESOURCE_GROUP_NAME} \
 		-backend-config=storage_account_name=${STORAGE_ACCOUNT_NAME} \
@@ -68,9 +67,12 @@ deploy-arm-resources: arm-deployment
 
 validate-arm-resources: set-what-if arm-deployment
 
-domains-infra-init: domains set-azure-account
-	./bin/terrafile -p terraform/domains/infrastructure/vendor/modules -f terraform/domains/infrastructure/config/zones_Terrafile
+.PHONY: vendor-domain-infra-modules
+vendor-domain-infra-modules:
+	rm -rf terraform/domains/infrastructure/vendor/modules/domains
+	git -c advice.detachedHead=false clone --depth=1 --single-branch --branch ${TERRAFORM_MODULES_TAG} https://github.com/DFE-Digital/terraform-modules.git terraform/domains/infrastructure/vendor/modules/domains
 
+domains-infra-init: domains vendor-domain-infra-modules set-azure-account
 	terraform -chdir=terraform/domains/infrastructure init -reconfigure -upgrade \
 		-backend-config=resource_group_name=${RESOURCE_GROUP_NAME} \
 		-backend-config=storage_account_name=${STORAGE_ACCOUNT_NAME} \
@@ -82,9 +84,12 @@ domains-infra-plan: domains domains-infra-init
 domains-infra-apply: domains domains-infra-init
 	terraform -chdir=terraform/domains/infrastructure apply -var-file config/zones.tfvars.json ${AUTO_APPROVE}
 
-domains-init: domains set-azure-account
-	./bin/terrafile -p terraform/domains/environment_domains/vendor/modules -f terraform/domains/environment_domains/config/${CONFIG}_Terrafile
+.PHONY: vendor-domain-modules
+vendor-domain-modules:
+	rm -rf terraform/domains/environment_domains/vendor/modules/domains
+	git -c advice.detachedHead=false clone --depth=1 --single-branch --branch ${TERRAFORM_MODULES_TAG} https://github.com/DFE-Digital/terraform-modules.git terraform/domains/environment_domains/vendor/modules/domains
 
+domains-init: domains vendor-domain-modules set-azure-account
 	terraform -chdir=terraform/domains/environment_domains init -upgrade -reconfigure \
 		-backend-config=resource_group_name=${RESOURCE_GROUP_NAME} \
 		-backend-config=storage_account_name=${STORAGE_ACCOUNT_NAME} \
