@@ -12,15 +12,6 @@ on:
         description: Target environment
         required: true
         default: development
-      azure-client-id:
-        description: Managed identity client ID
-        required: true
-      azure-subscription-id:
-        description: Azure subscription ID
-        required: true
-      azure-tenant-id:
-        description: Azure tenant ID
-        required: true
 
 jobs:
   manual-deploy:
@@ -28,6 +19,8 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: ${{ github.event.inputs.environment }}
+    permissions:
+      id-token: write
 
     steps:
       - name: Checkout code
@@ -40,9 +33,9 @@ jobs:
 
       - uses: DFE-Digital/github-actions/set-kubelogin-environment@master
         with:
-          client-id: ${{ secrets.AZURE_CLIENT_ID }}
-          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          azure-client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          azure-tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          azure-subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
       - name: Apply Terraform
         run: |
