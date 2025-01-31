@@ -12,15 +12,6 @@ on:
         description: Target environment
         required: true
         default: development
-      azure-client-id:
-        description: Managed identity client ID
-        required: true
-      azure-subscription-id:
-        description: Azure subscription ID
-        required: true
-      azure-tenant-id:
-        description: Azure tenant ID
-        required: true
 
 jobs:
   manual-deploy:
