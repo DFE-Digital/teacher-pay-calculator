@@ -4,80 +4,81 @@ concurrency: build_and_deploy_${{ github.ref_name }}
 on:
   push:
     branches:
-      - main
+      # - main
+      - CI-CD-domains
 
 jobs:
-  build:
-    name: Build and scan docker image
-    runs-on: ubuntu-latest
-    outputs:
-      docker-image-tag: ${{ steps.build-image.outputs.tag }}
+  # build:
+  #   name: Build and scan docker image
+  #   runs-on: ubuntu-latest
+    # outputs:
+    #   docker-image-tag: ${{ steps.build-image.outputs.tag }}
 
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v4
+  #   steps:
+  #     - name: Check out repository
+  #       uses: actions/checkout@v4
 
-      - name: Build and push docker image
-        id: build-image
-        uses: DFE-Digital/github-actions/build-docker-image@master
-        with:
-          docker-repository: ghcr.io/dfe-digital/teacher-pay-calculator
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          snyk-token: ${{ secrets.SNYK_TOKEN }}
-          context: .
+  #     - name: Build and push docker image
+  #       id: build-image
+  #       uses: DFE-Digital/github-actions/build-docker-image@master
+  #       with:
+  #         docker-repository: ghcr.io/dfe-digital/teacher-pay-calculator
+  #         github-token: ${{ secrets.GITHUB_TOKEN }}
+  #         snyk-token: ${{ secrets.SNYK_TOKEN }}
+  #         context: .
 
-  test:
-    name: Run tests
-    runs-on: ubuntu-latest
+  # test:
+  #   name: Run tests
+  #   runs-on: ubuntu-latest
 
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v4
+  #   steps:
+  #     - name: Check out repository
+  #       uses: actions/checkout@v4
 
-      - name: Run tests
-        uses: ./.github/actions/run-tests
+  #     - name: Run tests
+  #       uses: ./.github/actions/run-tests
 
-  deploy:
-    name: Deploy ${{ matrix.environment }}
-    runs-on: ubuntu-latest
-    needs: [build, test]
-    environment:
-      name: ${{ matrix.environment }}
-    strategy:
-      max-parallel: 1
-      matrix:
-        environment: [development, production]
-    permissions:
-      id-token: write
+  # deploy:
+  #   name: Deploy ${{ matrix.environment }}
+  #   runs-on: ubuntu-latest
+  #   needs: [build, test]
+  #   environment:
+  #     name: ${{ matrix.environment }}
+  #   strategy:
+  #     max-parallel: 1
+  #     matrix:
+  #       environment: [development, production]
+  #   permissions:
+  #     id-token: write
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v4
 
-      - uses: hashicorp/setup-terraform@v3
-        with:
-          terraform_version: 1.8.4
-          terraform_wrapper: false
+  #     - uses: hashicorp/setup-terraform@v3
+  #       with:
+  #         terraform_version: 1.8.4
+  #         terraform_wrapper: false
 
-      - uses: DFE-Digital/github-actions/set-kubelogin-environment@master
-        with:
-          azure-client-id: ${{ secrets.AZURE_CLIENT_ID }}
-          azure-tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-          azure-subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+  #     - uses: DFE-Digital/github-actions/set-kubelogin-environment@master
+  #       with:
+  #         azure-client-id: ${{ secrets.AZURE_CLIENT_ID }}
+  #         azure-tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+  #         azure-subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
-      - name: Apply Terraform
-        run: |
-          make ci ${{ matrix.environment }} terraform-apply
-        env:
-          TF_VAR_azure_sp_credentials_json: ${{ secrets.AZURE_CREDENTIALS }}
-          DOCKER_IMAGE_TAG: ${{ needs.build.outputs.docker-image-tag }}
+  #     - name: Apply Terraform
+  #       run: |
+  #         make ci ${{ matrix.environment }} terraform-apply
+  #       env:
+  #         TF_VAR_azure_sp_credentials_json: ${{ secrets.AZURE_CREDENTIALS }}
+  #         DOCKER_IMAGE_TAG: ${{ needs.build.outputs.docker-image-tag }}
 
   deploy_domains_infra:
     name: Deploy Domains Infrastructure
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    if: github.ref == 'refs/heads/CI-CD-domains' && github.event_name == 'push'
     concurrency: deploy_production
-    needs: [deploy]
+    # needs: [deploy]
     environment:
       name: production
     permissions:
@@ -92,7 +93,7 @@ jobs:
 
       - name: Deploy Domains Infrastructure
         id: deploy_domains_infra
-        uses: DFE-Digital/github-actions/deploy-domains-infra@master
+        uses: DFE-Digital/github-actions/deploy-domains-infra@domains-plan
         with:
           azure-client-id:  ${{ secrets.AZURE_CLIENT_ID  }}
           azure-tenant-id:  ${{ secrets.AZURE_TENANT_ID   }}
@@ -123,7 +124,7 @@ jobs:
 
       - name: Deploy Domains Environment
         id: deploy_domains_env
-        uses: DFE-Digital/github-actions/deploy-domains-env@master
+        uses: DFE-Digital/github-actions/deploy-domains-env@domains-plan
         with:
           azure-client-id:  ${{ secrets.AZURE_CLIENT_ID  }}
           azure-tenant-id:  ${{ secrets.AZURE_TENANT_ID   }}
