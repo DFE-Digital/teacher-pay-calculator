@@ -43,5 +43,7 @@ module TeacherPayCalculator
     config.environment_name = ActiveSupport::StringInquirer.new(ENV.fetch('ENVIRONMENT_NAME', 'local'))
 
     config.exceptions_app = routes
+
+    config.session_store :disabled
   end
 end
