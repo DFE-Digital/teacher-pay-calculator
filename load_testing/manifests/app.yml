@@ -18,7 +18,11 @@ spec:
       restartPolicy: Never
       containers:
         - name: k6-client
-          image: ghcr.io/dfe-digital/k6-client:3
+          image: ghcr.io/dfe-digital/k6-client:k6nonroot
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            runAsUser: 12345
           env:
             - name: BASE_URL
               value: "https://development.calculate-teacher-pay.education.gov.uk"
