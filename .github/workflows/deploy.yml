@@ -25,6 +25,8 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           snyk-token: ${{ secrets.SNYK_TOKEN }}
           context: .
+          reuse-cache: true
+          max-cache: true
 
   test:
     name: Run tests
