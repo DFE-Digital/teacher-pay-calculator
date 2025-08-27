@@ -55,7 +55,7 @@ RUN rm -rf node_modules log/* tmp/* /tmp && \
 # Build runtime image
 FROM ruby:3.4.1-alpine as production
 
-RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+RUN addgroup -S appgroup -g 20001 && adduser -S appuser -G appgroup -u 10001
 
 # The application runs from /app
 WORKDIR /app
@@ -72,8 +72,8 @@ RUN apk add --no-cache gcompat
 COPY --from=builder /app /app
 COPY --from=builder /usr/local/bundle/ /usr/local/bundle/
 
-RUN chown -hR appuser:appgroup /app
+RUN chown -hR appuser:appgroup /app/tmp
 
-USER appuser
+USER 10001
 
 CMD bundle exec rails server -b 0.0.0.0

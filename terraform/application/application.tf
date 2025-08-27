@@ -37,4 +37,5 @@ module "web_application" {
   docker_image                 = "${local.docker_repository}:${var.docker_image_tag}"
   github_username              = module.infrastructure_secrets.map.GITHUB-USERNAME
   github_personal_access_token = module.infrastructure_secrets.map.GITHUB-PERSONAL-ACCESS-TOKEN
+  run_as_non_root              = var.run_as_non_root
 }
