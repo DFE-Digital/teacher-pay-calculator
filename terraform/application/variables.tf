@@ -18,6 +18,13 @@ variable "run_as_non_root" {
   description = "Whether to enforce that containers must run as non-root user"
 }
 
+variable "enable_logit" {
+  type        = bool
+  default     = true
+  description = "A boolean to indicate whether to enable sending container logs to logit.io"
+  nullable    = false
+}
+
 locals {
   docker_repository = "ghcr.io/dfe-digital/teacher-pay-calculator"
 
