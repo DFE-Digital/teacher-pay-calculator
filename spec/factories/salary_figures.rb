@@ -23,7 +23,7 @@ FactoryBot.define do
       end
     end
 
-    increase do
+    first_year_increase do
       if type == :value
         (current * increase_percentage / 100).to_i
       else
@@ -33,12 +33,35 @@ FactoryBot.define do
       end
     end
 
-    future do
+    first_year_future do
       if type == :value
-        current + increase
+        current + first_year_increase
       else
-        Range.new(current.min + increase.min, current.max + increase.max)
+        Range.new(current.min + first_year_increase.min, current.max + first_year_increase.max)
       end
+    end
+
+    second_year_future do
+      if type == :value
+        first_year_future + second_year_increase
+      else
+        Range.new(first_year_future.min + second_year_increase.min, first_year_future.max + second_year_increase.max)
+      end
+    end
+
+    second_year_increase do
+      if type == :value
+        (first_year_future * increase_percentage / 100).to_i
+      else
+        Range.new(
+          (first_year_future.min * increase_percentage.min / 100).to_i,
+          (first_year_future.max * increase_percentage.max / 100).to_i
+        )
+      end
+    end
+
+    second_year_increase_percentage do
+      increase_percentage
     end
 
     trait :value do
