@@ -74,6 +74,7 @@ RSpec.feature 'Teacher Pay Calculator' do
         )
      )).and have_content(t('results.panel.pay_band_outcome.future_year',
         second_year_value_min: number_to_currency(salary_figures.second_year_future.min, precision: 0),
+        second_year_value_max: number_to_currency(salary_figures.second_year_future.max, precision: 0),
         second_year_increase_value_min: number_to_currency(salary_figures.second_year_increase.min, precision: 0),
         second_year_increase_value_max: number_to_currency(salary_figures.second_year_increase.max, precision: 0),
         second_year_increase_percentage_min: number_with_precision(

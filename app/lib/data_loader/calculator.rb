@@ -84,7 +84,9 @@ class DataLoader::Calculator
     end
 
     def second_year_increase
-      calc_second_year_change { |first_year_future, increase_percentage| (first_year_future * increase_percentage / 100).to_i }
+        calc_second_year_change do |first_year_future, increase_percentage|
+          (first_year_future * increase_percentage / 100).to_i
+        end
     end
 
     def second_year_future
