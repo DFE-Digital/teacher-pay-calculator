@@ -1,3 +1,7 @@
+# This file contains fake pay data for development purposes and the data may differ from the actual pay data. The pay data below is based off
+# previous awards and is subject to change following the 2026 pay award. The pay data is used to calculate the pay increase for each pay band and
+# spine point based on the current pay and the future pay.
+
 development: &default
   paybands_and_spine_points:
     unqualified:
