@@ -115,9 +115,9 @@ days before expiry. When it happens follow [the revalidation process](https://le
 ## Monitoring
 
 Sentry is configured for both hosted environments and [alerts](https://dfe-teacher-services.sentry.io/alerts/rules/?project=4505442196783104)
-will be sent to the `#claim_tech` Teams channel as well as to the [project team
+will be sent to the `#Claims Monitoring Teams channel` as well as to the [project team
 members](https://dfe-teacher-services.sentry.io/settings/teams/teacher-pay-calculator/members/).
 
 StatusCake is also configured to check against the `/healthcheck` endpoint, and
-the alerts will be sent to the `#claim_tech` Teams channel as well as to the
+the alerts will be sent to the `#Claims Monitoring Teams channel` as well as to the
 email and/or mobile phone number lists added to the [Teacher payments contact group](https://app.statuscake.com/ContactGroup.php?CUID=195955).
