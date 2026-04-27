@@ -19,7 +19,7 @@ RUN apk add --update --no-cache tzdata && \
 # build-base: dependencies for bundle
 # gcompat: dependencies for nokogiri
 # yarn: node package manager
-RUN apk add --no-cache build-base gcompat yarn libcrypto3=3.3.6-r0
+RUN apk add --no-cache build-base gcompat yarn
 
 # Install gems defined in Gemfile
 COPY .ruby-version Gemfile Gemfile.lock ./
@@ -66,7 +66,7 @@ RUN apk add --update --no-cache tzdata && \
     echo "Europe/London" > /etc/timezone
 
 # gcompat: required by nokogiri
-RUN apk add --no-cache gcompat libcrypto3=3.3.6-r0
+RUN apk add --no-cache gcompat
 
 # Copy files generated in the builder image
 COPY --from=builder /app /app
