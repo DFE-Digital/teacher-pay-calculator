@@ -39,5 +39,3 @@ jobs:
           validation-plan: ${{ matrix.validation_plan }}
           service: ${{ vars.TEAMS_MSG_SERVICE_NAME }}
           teams-webhook-url: ${{ secrets.TEAMS_WEBHOOK_URL_INFRA }}
-          docker-repo: true
-          service-name: teacher-pay-calculator
