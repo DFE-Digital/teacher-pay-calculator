@@ -84,9 +84,16 @@ class DataLoader::Calculator
     end
 
     def second_year_increase
-        calc_second_year_change do |first_year_future, increase_percentage|
-          (first_year_future * increase_percentage / 100).to_i
-        end
+      if provided_second_year_future
+        return Range.new(
+          second_year_future.min - first_year_future.min,
+          second_year_future.max - first_year_future.max
+        )
+      end
+
+      calc_second_year_change do |first_year_future, increase_percentage|
+        (first_year_future * increase_percentage / 100).to_i
+      end
     end
 
     def second_year_future
@@ -100,18 +107,22 @@ class DataLoader::Calculator
 
     def second_year_increase_percentage
       values = [
-        ((second_year_future.min - first_year_future.min).to_f / first_year_future.min * 100).round(1),
-        ((second_year_future.max - first_year_future.max).to_f / first_year_future.max * 100).round(1)
+        calculate_percentage_increase(second_year_increase_for(first_year_future.min), first_year_future.min),
+        calculate_percentage_increase(second_year_increase_for(first_year_future.max), first_year_future.max)
       ]
 
       Range.new(*values.sort)
     end
 
+    private
+
+    def calculate_percentage_increase(change, base)
+      (change.to_f / base * 100).round(1)
+    end
+
     def increase_percentage
       calc_change { |current, first_year_future| ((first_year_future - current).to_f / current * 100).round(1) }
     end
-
-    private
 
     def calc_change
       values = [
@@ -129,6 +140,26 @@ class DataLoader::Calculator
       ]
 
       Range.new(*values.sort)
+    end
+
+    def second_year_increase_for(first_year_future_value)
+      if provided_second_year_future
+        second_year_future_value =
+          if first_year_future_value == first_year_future.min
+            second_year_future.min
+          else
+            second_year_future.max
+          end
+        second_year_future_value - first_year_future_value
+      else
+        increase_pct =
+          if first_year_future_value == first_year_future.min
+            increase_percentage.min
+          else
+            increase_percentage.max
+          end
+        (first_year_future_value * increase_pct / 100).to_i
+      end
     end
   end
 end

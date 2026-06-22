@@ -35,6 +35,16 @@ describe DataLoader::Calculator do
     it { is_expected.to have_values second_year_increase_percentage: 5.0 }
   end
 
+  context "when explicit second year values are provided for salary bands" do
+    let(:current) { [30_000, 36_000] }
+    let(:first_year_future) { [31_500, 39_000] }
+    let(:second_year_future) { [32_603, 40_170] }
+
+    it { is_expected.to have_values second_year_future: 32_603..40_170 }
+    it { is_expected.to have_values second_year_increase: 1103..1170 }
+    it { is_expected.to have_values second_year_increase_percentage: 3.0..3.5 }
+  end
+
   # Built-in `include` matcher performs soft comparisons of range inclusions and yields false positives
   matcher :have_values do |opts|
     match do |subject|
