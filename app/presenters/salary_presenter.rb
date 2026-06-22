@@ -42,7 +42,7 @@ class SalaryPresenter
         precision: 1,
         strip_insignificant_zeros: true
       )
-    )].join("<hr class=\"govuk-section-break govuk-section-break--l\" />").html_safe
+    )]
   end
 
   def payband_primary_text
@@ -72,6 +72,6 @@ class SalaryPresenter
         precision: 1,
         strip_insignificant_zeros: true
       )
-    )].join("<hr class=\"govuk-section-break govuk-section-break--l\" />").html_safe
+    )]
   end
 end

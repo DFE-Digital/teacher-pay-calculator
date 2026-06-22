@@ -57,7 +57,7 @@ RSpec.describe SalaryPresenter do
             precision: 1,
             strip_insignificant_zeros: true
           )
-        )].join("<hr class=\"govuk-section-break govuk-section-break--l\" />").html_safe
+        )]
       end
 
       it { is_expected.to eq(expected_text) }
@@ -85,7 +85,7 @@ RSpec.describe SalaryPresenter do
             precision: 1,
             strip_insignificant_zeros: true
           )
-        )].join("<hr class=\"govuk-section-break govuk-section-break--l\" />").html_safe
+        )]
       end
 
       it { is_expected.to eq(expected_text) }

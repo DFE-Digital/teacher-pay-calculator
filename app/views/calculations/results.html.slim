@@ -1,4 +1,10 @@
-= govuk_panel(title_text: @presenter.primary_text, text: @presenter.secondary_text)
+- secondary_text = @presenter.secondary_text
+
+= govuk_panel(title_text: @presenter.primary_text) do
+  - secondary_text.each_with_index do |text, index|
+    .govuk-panel__body = text
+    - unless index == secondary_text.length - 1
+      hr.govuk-section-break.govuk-section-break--l
 
 p.govuk-body
   = t('results.description')
