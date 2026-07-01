@@ -85,10 +85,12 @@ class DataLoader::Calculator
 
     def second_year_increase
       if provided_second_year_future
-        return Range.new(
+        values = [
           second_year_future.min - first_year_future.min,
           second_year_future.max - first_year_future.max
-        )
+        ]
+
+        return Range.new(*values.sort)
       end
 
       calc_second_year_change do |first_year_future, increase_percentage|
