@@ -278,10 +278,10 @@ fill-range@^7.1.1:
   dependencies:
     to-regex-range "^5.0.1"
 
-govuk-frontend@5.9.0:
-  version "5.9.0"
-  resolved "https://registry.yarnpkg.com/govuk-frontend/-/govuk-frontend-5.9.0.tgz#4064ac692019e60f030d6311c49330a6454a5689"
-  integrity sha512-8NzmyoDtRFYyHs413DfNPR8Zo6qw6Q02Mruxml/Yfy+EueaOI/JZ4gVM8d0pqzJmTiMcJuHhvxqYEgBRmqeoyA==
+govuk-frontend@6.1.0:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/govuk-frontend/-/govuk-frontend-6.1.0.tgz#7022bede1d72f6c63f6bf43f16f3d207c6f1214e"
+  integrity sha512-sqivexZFa82LiDIDVMItsUlqEXE/wEUWWBqzEoxHvUFLBH7bY0C8lVrj1qsDThSnj5JEUMS7isBAbKnfQ5Qp6g==
 
 immutable@^5.0.2:
   version "5.0.3"
