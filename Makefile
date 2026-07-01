@@ -25,6 +25,13 @@ set-azure-account:
 vendor-modules:
 	rm -rf terraform/application/vendor/modules
 	git -c advice.detachedHead=false clone --depth=1 --single-branch --branch ${TERRAFORM_MODULES_TAG} https://github.com/DFE-Digital/terraform-modules.git terraform/application/vendor/modules/aks
+	# Allow pods to schedule in the same availability zone during rolling updates.
+	# The upstream module uses DoNotSchedule which blocks single-replica deployments
+	# when the cluster has no spare capacity in other zones, causing Terraform to
+	# time out after 10 minutes (Kubernetes progressDeadlineSeconds default).
+	sed -i.bak 's/when_unsatisfiable = "DoNotSchedule"/when_unsatisfiable = "ScheduleAnyway"/' \
+		terraform/application/vendor/modules/aks/aks/application/resources.tf
+	rm -f terraform/application/vendor/modules/aks/aks/application/resources.tf.bak
 
 terraform-init: vendor-modules set-azure-account
 	$(if ${DOCKER_IMAGE_TAG}, , $(eval DOCKER_IMAGE_TAG=main))
