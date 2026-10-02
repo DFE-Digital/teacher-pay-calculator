@@ -3,7 +3,7 @@
 # production: runs the actual app
 
 # Build builder image
-FROM ruby:3.4.1-alpine as builder
+FROM ruby:3.4.1-alpine AS builder
 
 # RUN apk -U upgrade && \
 #     apk add --update --no-cache gcc git libc6-compat libc-dev make nodejs \
@@ -19,7 +19,7 @@ RUN apk add --update --no-cache tzdata && \
 # build-base: dependencies for bundle
 # gcompat: dependencies for nokogiri
 # yarn: node package manager
-RUN apk add --no-cache build-base gcompat yarn libcrypto3=3.3.7-r0
+RUN apk add --no-cache build-base gcompat yarn libcrypto3=3.3.7-r2 libssl3=3.3.7-r2
 
 # Install gems defined in Gemfile
 COPY .ruby-version Gemfile Gemfile.lock ./
@@ -53,7 +53,7 @@ RUN rm -rf node_modules log/* tmp/* /tmp && \
     find /usr/local/bundle/gems -name "*.html" -delete
 
 # Build runtime image
-FROM ruby:3.4.1-alpine as production
+FROM ruby:3.4.1-alpine AS production
 
 RUN addgroup -S appgroup -g 20001 && adduser -S appuser -G appgroup -u 10001
 
@@ -66,7 +66,7 @@ RUN apk add --update --no-cache tzdata && \
     echo "Europe/London" > /etc/timezone
 
 # gcompat: required by nokogiri
-RUN apk add --no-cache gcompat libcrypto3=3.3.7-r0
+RUN apk add --no-cache gcompat libcrypto3=3.3.7-r2 libssl3=3.3.7-r2
 
 # Copy files generated in the builder image
 COPY --from=builder /app /app
